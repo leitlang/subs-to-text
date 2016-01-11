@@ -1,0 +1,89 @@
+
+/**
+ * Deals with the original subtitle file
+ * 
+ * @Elliot (your name) 
+ * @version (alpha)
+ */
+import java.util.Scanner;
+import java.io.File;
+import java.util.ArrayList;
+public class SubtitleFile
+{
+
+    private String subText;
+    private String fileName;
+
+    /**
+     * Constructor for objects of class SubtitleFile
+     */
+    public SubtitleFile(String fileName)
+    {
+        // initialise instance variables
+        this.fileName = fileName;
+        subText = getSubText();
+    }
+
+
+    public void readSub(String fileName)
+    {
+        // put your code here
+        subText = "";
+        try
+        {
+            Scanner file = new Scanner(new File(fileName));
+            ArrayList<String> lineArrayList = new ArrayList<String>();
+            while (file.hasNextLine())
+            {
+                String line = file.nextLine().toString();
+                lineArrayList.add(line);
+            }
+            file.close();
+            ArrayList<String> wordLines = new ArrayList<String>();
+            for (int i = 1; i < lineArrayList.size(); i = i + 3)
+            {
+                wordLines.add(lineArrayList.get(i));
+            }
+            for (int i = 0; i < wordLines.size(); i++)
+            {
+                subText = subText + " " + wordLines.get(i);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+    //public String getSubText(String fileName)
+    public String getSubText()
+    {
+        subText = "\n" + "SubSource: " + fileName + "\n";
+        try
+        {
+            Scanner file = new Scanner(new File(fileName));
+            ArrayList<String> lineArrayList = new ArrayList<String>();
+            while (file.hasNextLine())
+            {
+                String line = file.nextLine().toString();
+                lineArrayList.add(line);
+            }
+            file.close();
+            ArrayList<String> wordLines = new ArrayList<String>();
+            for (int i = 1; i < lineArrayList.size(); i = i + 3)
+            {
+                wordLines.add(lineArrayList.get(i));
+            }
+            for (int i = 0; i < wordLines.size(); i++)
+            {
+                //subText = subText + "\n" + wordLines.get(i);
+                subText = subText + " " + wordLines.get(i);
+            }
+            
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        return subText;
+    }
+}
