@@ -1,0 +1,26 @@
+/**
+ * Converts file from subtitle with timestamps to text only (no timestamp)
+ * 
+ * @Elliot 
+ * @versionAlpha
+ */
+//import java.util.Scanner;
+//import java.util.ArrayList;
+
+public class ConvertTest
+{
+
+
+
+    public static void main(String[] args)
+    {
+        SubtitleFile toConvert = new SubtitleFile("testSub.txt");
+        System.out.print(toConvert.getSubText());
+    }
+    public static void main(String fileName)
+    {
+        SubtitleFile toConvert = new SubtitleFile(fileName);
+        System.out.print(toConvert.getSubText());
+    }
+}
+    
