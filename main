@@ -1,0 +1,78 @@
+
+/**
+ * Converts file from subtitle with timestamps to text only (no timestamp)
+ * 
+ * @Elliot 
+ * @versionAlpha
+ */
+//import java.util.Scanner;
+//import java.util.ArrayList;
+import java.io.*;
+//import java.System.Printstream;
+public class ConvertTest
+{
+
+
+    /**converts file "testSub.txt" to a more readable format. 
+     * prints using System output
+     */
+    public static void main(String[] args)
+    {
+        SubtitleFile toConvert = new SubtitleFile("testSub.txt");
+        System.out.print(toConvert.getSubText());
+    }
+    /**
+     *converts file <fileName> to a more readable format.
+     *prints using system output
+     */
+    public static void main(String fileName)
+    {
+        SubtitleFile toConvert = new SubtitleFile(fileName);
+        System.out.print(toConvert.getSubText());
+        ////ImageIO.write(toConvert.getSubText(), "txt", new File("test.txt"));
+        //String converted = toConvert.getSubText();
+        //File f = new File
+        //PrintStream out = null;
+        /*try
+        {
+            
+            out = new PrintStream("firstTry.txt");
+            System.out.print(toConvert.getSubText());
+        }
+        catch ( IOException e)
+        {
+        }
+        finally
+        {
+            try
+            {
+                if (out != null)
+                {
+                    out.close();
+                }
+            }
+            catch  (IOException e)
+            {
+            }
+        }
+        */
+      
+    }
+    /**
+     * converts file <fileName> to a more readable format.
+     * prints by creating new text file <destinationName>
+     */
+    public static void main(String fileName, String destinationName)
+    {
+        SubtitleFile toConvert = new SubtitleFile(fileName);
+        String destination = destinationName;
+        try (PrintStream out = new PrintStream(new FileOutputStream(destinationName)))
+        {
+           out.print(toConvert.getSubText());
+        }
+        catch(IOException e)
+        {
+        }
+    }
+}
+    
