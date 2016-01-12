@@ -8,6 +8,7 @@
 //import java.util.Scanner;
 //import java.util.ArrayList;
 import java.io.*;
+import java.util.Scanner;
 //import java.System.Printstream;
 public class ConvertTest
 {
@@ -72,6 +73,57 @@ public class ConvertTest
         }
         catch(IOException e)
         {
+        }
+    }
+    /**
+     * converts file <fileName> to a more readable format.
+     * prints by creating new text file with the same name but extension "txt" instead
+     */
+    public static void sameName(String fileName)
+    {
+        SubtitleFile toConvert = new SubtitleFile(fileName);
+        int l = fileName.length();
+        String destination = fileName.substring(0, l - 4) + ".txt" + fileName.substring(l);
+        try (PrintStream out = new PrintStream(new FileOutputStream(destination)))
+        {
+           out.print(toConvert.getSubText());
+        }
+        catch(IOException e)
+        {
+        }
+    }
+    /**
+     * converts files to a more readable format. Files are input with name and extension but 
+     * WITHOUT QUOTES for easier copy/paste style input
+     * prints by creating new text file with the same name but extension "txt" instead
+     * 
+     */
+    public static void scannerConversion()
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter filenames separated by an 'enter'. 'd' to quit");
+        String fileName = "";
+        while (fileName.length() != 1)
+        {
+            fileName = in.nextLine().toString();
+            if (fileName.length() != 1)
+            {
+                SubtitleFile toConvert = new SubtitleFile(fileName);
+            
+                int l = fileName.length();
+                if (l >= 4)
+                {
+                    String destination = fileName.substring(0, l - 4) + ".txt" + fileName.substring(l);
+                
+                    try (PrintStream out = new PrintStream(new FileOutputStream(destination)))
+                    {
+                       out.print(toConvert.getSubText());
+                    }
+                    catch(IOException e)
+                    {
+                    }
+                }
+            }
         }
     }
 }
